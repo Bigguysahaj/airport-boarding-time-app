@@ -16,7 +16,7 @@ const [latitude, setLatitude] = useState(28.5562);
 
   useEffect(() => {
     let map = tt.map({
-      key:"pgTRhRVhL24ehIFHVmR1qhBGORgWcjuA",
+      key:"",
       container: mapElement.current,
       stylesVisibility: {
         trafficIncidents: true,
