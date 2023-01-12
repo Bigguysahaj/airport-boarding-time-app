@@ -1,3 +1,44 @@
+
+.header{
+  display: flex;
+  height: 100px;
+  padding: 20px;
+  justify-content: space-between;
+  
+  margin-right: 100px;
+}
+.header input{
+  margin: 35px;
+  height: 30px;
+  align-content: center;
+  vertical-align: auto;
+}
+
+
+body {
+  display: flex;
+  justify-content: center;
+  /* moving flex item below
+  align-items: center;
+  /* moving flex item below */
+  /* height: 100vh; */
+
+}
+
+.app {
+  height: 600px;
+  width: 100vh;
+}
+
 .map {
-  height: 800px;
+  height: 100%;
+  width: 100%;
+}
+
+.marker {
+  background-image: url(https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/airplane_2708-fe0f.png);
+  background-size: cover;
+  width: 25px;
+  height: 25px;
+  background-color: dark grey;
 }

@@ -2,6 +2,7 @@ import React, { Component, createRef} from 'react';
 import { useRef, useEffect, useState } from 'react'
 import tt from '@tomtom-international/web-sdk-maps';
 import './App.css';
+import '@tomtom-international/web-sdk-maps/dist/maps.css';
 
 import { services } from "@tomtom-international/web-sdk-services";
 
@@ -15,23 +16,41 @@ const [latitude, setLatitude] = useState(28.5562);
 
   useEffect(() => {
     let map = tt.map({
-      key:"YOUR_API_KEY",
+      key:"pgTRhRVhL24ehIFHVmR1qhBGORgWcjuA",
       container: mapElement.current,
-      center: [longitude, latitude],
       stylesVisibility: {
         trafficIncidents: true,
         trafficFlow: true
       },
-      zoom: 14,
+      center: [longitude, latitude],
+      zoom: 13,
   })
   setMap(map);
+
+  const addMarker = () => {
+
+    const element = document.createElement('div');
+    element.className = 'marker';
+    const marker = new tt.Marker({
+      draggable: true,
+      color: "#000000",
+      element: element,
+    })
+    .setLngLat([longitude, latitude])
+    .addTo(map);
+
+  marker.on('dragend', () => {
+    const lngLat = marker.getLngLat();
+    setLongitude(lngLat.lng);
+    setLatitude(lngLat.lat);})
+  }
+  addMarker();
   return () => map.remove();
-},
-  
-  []);
+}, [longitude, latitude]);
+
   return (
     <div className="app">
-      <div ref={mapElement} className="map">
+      <div className="header">
         <h1>Airport ?</h1>
         <input
           type="text"
@@ -47,7 +66,10 @@ const [latitude, setLatitude] = useState(28.5562);
         placeholder="Latitude here"
         onChange={(e) => {setLatitude(e.target.value)}}
         />
+        </div>
+      <div ref={mapElement} className="map">
       </div>
+
     </div>
   )
 }
